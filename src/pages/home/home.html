@@ -1,14 +1,43 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Contatos
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  Olá {{nome}}.
+  <br>
+  <button (click)="logout()">Sair</button>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label stacked>Nome do Contato</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label stacked>Número</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <div padding>
+      <button ion-button color="primary" block>Adicionar Contato</button>
+    </div>
+
+    <div padding>
+      <button ion-button color="light" full (click)="abrirLista()">Listar Contatos</button>
+    </div>
+  
+  </ion-list>
+    
+
+  <ion-fab right bottom>
+    <button ion-fab color="secondary"><ion-icon name="add"></ion-icon></button>
+    
+  </ion-fab>
+
 </ion-content>
+
