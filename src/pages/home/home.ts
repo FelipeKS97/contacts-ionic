@@ -15,6 +15,9 @@ export class HomePage {
   public nascimento = '';
   private PATH = 'contacts/';
 
+  public contactName = '';
+  public contactTel = '' ;
+
   constructor(
     public navCtrl: NavController,
     public firebaseAuth: AngularFireAuth,
@@ -46,15 +49,16 @@ export class HomePage {
   atualizarNascimento(){
     let uid = this.firebaseAuth.auth.currentUser.uid;
     this.db.object('usuarios/' + uid).update({nascimento : '02/12/1985'});
-    
   }
 
-  updateContact(contact: any){
+  createContact(){
+    alert(this.contactName)
     
-    this.db.object(this.PATH + contact.key)
-      .update({ name: contact.name, tel: contact.tel })
+    this.db.list(this.PATH)
+      .push({ name: this.contactName, tel: this.contactTel })
     
   }
+  
   save(contact: any) {
     return new Promise((resolve, reject) => {
       if (contact.key) {
@@ -69,6 +73,7 @@ export class HomePage {
       }
     })
   }
+
   getAll() {
     return this.db.list(this.PATH, ref => ref.orderByChild('name'))
       .snapshotChanges()

@@ -15,16 +15,16 @@
 
     <ion-item>
       <ion-label stacked>Nome do Contato</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input [(ngModel)]="contactName" type="text"></ion-input>
     </ion-item>
   
     <ion-item>
       <ion-label stacked>Número</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input [(ngModel)]="contactTel" type="text"></ion-input>
     </ion-item>
 
     <div padding>
-      <button ion-button color="primary" block>Adicionar Contato</button>
+      <button (click)="createContact()" ion-button color="primary" block>Adicionar Contato</button>
     </div>
 
     <div padding>
