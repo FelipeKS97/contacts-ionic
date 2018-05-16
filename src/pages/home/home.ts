@@ -13,7 +13,7 @@ export class HomePage {
 
   public nome = 'Felipe';
   public nascimento = '';
-  private PATH = 'contacts/';
+  public PATH = 'contacts/';
 
   public contactName = '';
   public contactTel = '' ;
@@ -28,7 +28,7 @@ export class HomePage {
 
   // Primeira função a ser executada ao abrir uma tela.
   ionViewDidEnter(){
-    let uid = this.firebaseAuth.auth.currentUser.uid;
+    //let uid = this.firebaseAuth.auth.currentUser.uid;
     
     /*this.db.object('usuarios/' + uid)
     .snapshotChanges()
@@ -36,11 +36,11 @@ export class HomePage {
       this.nascimento = usuarioComInfoAdicionais.payload.child('nascimento').val();
     });*/
 
-    this.db.object('usuarios/' + uid + '/nascimento')
+    /*this.db.object('usuarios/' + uid + '/nascimento')
     .snapshotChanges()
     .subscribe(nascimento => {
       this.nascimento = nascimento.payload.val();
-    });
+    });*/
 
     
 
@@ -78,7 +78,8 @@ export class HomePage {
     return this.db.list(this.PATH, ref => ref.orderByChild('name'))
       .snapshotChanges()
       .map(changes => {
-        return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+        let contactsChange = changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+        return contactsChange 
       })
   }
 

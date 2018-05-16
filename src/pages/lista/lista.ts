@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { Observable } from 'rxjs';
 
 
 /**
@@ -37,18 +38,20 @@ export class ListaPage {
     'Halo'
   ];
 
+  public PATH = 'contacts/';
+  contactList: Observable<any[]>
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
     public db: AngularFireDatabase
   ) {
-    
+    this.contactList = db.list(this.PATH, ref => ref.orderByChild('name')).valueChanges();
   }
 
-  ionViewDidLoad() {
-  
+  ionViewDidLoad() { 
   }
-  
+
   itemSelected(item: string) {
     alert(`Contato Selecionado: ${item}`);
   }

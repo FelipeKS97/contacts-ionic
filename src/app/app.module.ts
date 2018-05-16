@@ -9,6 +9,8 @@ import { HomePage } from '../pages/home/home';
 import { ListaPage } from '../pages/lista/lista';
 import { LoginPage } from '../pages/login/login';
 
+import { Ionic2RatingModule } from 'ionic2-rating';
+
 // Acesso ao Firebase
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -25,7 +27,8 @@ import { FirebaseConfig } from './FirebaseConfig';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(FirebaseConfig.FIREBASE_CONFIG)
+    AngularFireModule.initializeApp(FirebaseConfig.FIREBASE_CONFIG),
+    Ionic2RatingModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
