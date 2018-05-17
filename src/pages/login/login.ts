@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { HomePage } from '../home/home';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { GooglePlus } from '@ionic-native/google-plus';
 
 /**
  * Generated class for the LoginPage page.
@@ -15,6 +16,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
+  providers: [GooglePlus]
 })
 export class LoginPage {
 
@@ -25,11 +27,12 @@ export class LoginPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public firebaseAuth: AngularFireAuth,
-    public db: AngularFireDatabase) {
+    public db: AngularFireDatabase,
+    private googlePlus: GooglePlus
+  ) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
   }
 
   cadastrar(){
@@ -65,6 +68,13 @@ export class LoginPage {
     .catch(erro => {
       alert('Erro: ' + erro);
     });
+  }
+
+  loginGoogle() {
+    // console.log("ta funfando")
+    this.googlePlus.login({})
+    .then(res => console.log(res))
+    .catch(err => console.error(err));
   }
 
 }
