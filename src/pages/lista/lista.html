@@ -15,10 +15,11 @@
   
       <ion-card-content>
         <ion-card-title>
-          {{ item.name.split('"').join('') | json }}
+          {{ item.name | json }}
         </ion-card-title>
         <p>
           {{ item.tel | json }}
+          
         </p>
       </ion-card-content>
   
@@ -30,7 +31,7 @@
           </button>
         </ion-col>
         <ion-col text-right>
-          <button ion-button clear small color="danger" icon-start>
+          <button (click)="removeContact(item)" ion-button clear small color="danger" icon-start>
             <ion-icon name='trash'></ion-icon>
             Deletar
           </button>

@@ -38,6 +38,9 @@ export class ListaPage {
     'Halo'
   ];
 
+  public contactName = '';
+  public contactTel = '' ;
+
   public PATH = 'contacts/';
   contactList: Observable<any[]>
 
@@ -46,10 +49,24 @@ export class ListaPage {
     public navParams: NavParams, 
     public db: AngularFireDatabase
   ) {
-    this.contactList = db.list(this.PATH, ref => ref.orderByChild('name')).valueChanges();
+    this.contactList = db.list(this.PATH)
+      .snapshotChanges()
+      .map(changes => {
+        let contactsChange = changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+        return contactsChange 
+      })
   }
 
   ionViewDidLoad() { 
+  }
+
+  removeContact(item: any) {
+    return this.db.list(this.PATH).remove(item.key);
+  }
+
+  updateContact(item: any){
+    this.db.list(this.PATH)
+      .update(item.key, { name: this.contactName, tel: this.contactTel })
   }
 
   itemSelected(item: string) {
