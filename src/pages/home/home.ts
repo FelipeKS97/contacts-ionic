@@ -54,8 +54,9 @@ export class HomePage {
   createContact(){
     alert(this.contactName)
     
-    this.db.list(this.PATH)
-      .push({ name: this.contactName, tel: this.contactTel })
+    let key = this.db.list(this.PATH)
+      .push({ name: this.contactName, tel: this.contactTel }).key
+
     
   }
   
@@ -63,7 +64,7 @@ export class HomePage {
     return new Promise((resolve, reject) => {
       if (contact.key) {
         this.db.list(this.PATH)
-          .update(contact.key, { name: contact.name, tel: contact.tel })
+          .update(contact.key, { name: this.contactName, tel: this.contactTel })
           .then(() => resolve())
           .catch((e) => reject(e));
       } else {

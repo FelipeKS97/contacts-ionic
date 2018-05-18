@@ -5,9 +5,37 @@
   </ion-header>
   
   <ion-content>
-    <ion-list>
+    <!-- <ion-list>
       <button ion-item *ngFor="let item of contactList | async" (click)="itemSelected(item.name)">
         {{ item.name | json }}
       </button>
-    </ion-list>
+    </ion-list> -->
+
+    <ion-card *ngFor="let item of contactList | async">
+  
+      <ion-card-content>
+        <ion-card-title>
+          {{ item.name.split('"').join('') | json }}
+        </ion-card-title>
+        <p>
+          {{ item.tel | json }}
+        </p>
+      </ion-card-content>
+  
+      <ion-row no-padding>
+        <ion-col text-center>
+          <button ion-button clear small color="primary" icon-start>
+            <ion-icon name='checkbox'></ion-icon>
+            Alterar
+          </button>
+        </ion-col>
+        <ion-col text-right>
+          <button ion-button clear small color="danger" icon-start>
+            <ion-icon name='trash'></ion-icon>
+            Deletar
+          </button>
+        </ion-col>
+      </ion-row>
+  
+    </ion-card>
   </ion-content>
