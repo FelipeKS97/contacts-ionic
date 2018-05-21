@@ -15,19 +15,30 @@
   
       <ion-card-content>
         <ion-card-title>
-          {{ item.name | json }}
+          {{ item.name }}
+          
+          <ion-input *ngIf="isEdit === true" [(ngModel)]="contactName" type="text" placeholder="Nome"></ion-input>
+
         </ion-card-title>
-        <p>
-          {{ item.tel | json }}
+        <p *ngIf="isEdit === false">
+          {{ item.tel }}
           
         </p>
+
+        <ion-input *ngIf="isEdit === true" [(ngModel)]="contactTel" type="number" placeholder="Telefone"></ion-input>
+
       </ion-card-content>
   
       <ion-row no-padding>
         <ion-col text-center>
-          <button ion-button clear small color="primary" icon-start>
+          <button *ngIf="isEdit === false" (click)="handleEdit()" ion-button clear small color="primary" icon-start>
             <ion-icon name='checkbox'></ion-icon>
             Alterar
+          </button>
+
+          <button *ngIf="isEdit === true" (click)="updateContact(item)" ion-button clear small color="primary" icon-start>
+            <ion-icon name='send'></ion-icon>
+            Salvar
           </button>
         </ion-col>
         <ion-col text-right>

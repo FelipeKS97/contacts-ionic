@@ -1,5 +1,9 @@
 <ion-header>
   <ion-navbar>
+      <button (click)="logout()" clear ion-button icon-only>
+        <ion-icon name="power"></ion-icon>
+        Sair
+      </button>
     <ion-title>
       Contatos
     </ion-title>
@@ -7,9 +11,7 @@
 </ion-header>
 
 <ion-content padding>
-  Olá {{nome}}.
-  <br>
-  <button (click)="logout()">Sair</button>
+  
 
   <ion-list>
 
@@ -20,7 +22,7 @@
   
     <ion-item>
       <ion-label stacked>Número</ion-label>
-      <ion-input [(ngModel)]="contactTel" type="text"></ion-input>
+      <ion-input [(ngModel)]="contactTel" type="number"></ion-input>
     </ion-item>
 
     <div padding>

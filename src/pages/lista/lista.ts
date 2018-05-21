@@ -17,29 +17,10 @@ import { Observable } from 'rxjs';
   templateUrl: 'lista.html',
 })
 export class ListaPage {
-  
-  items = [
-    'Pokémon Yellow',
-    'Super Metroid',
-    'Mega Man X',
-    'The Legend of Zelda',
-    'Pac-Man',
-    'Super Mario World',
-    'Street Fighter II',
-    'Half Life',
-    'Final Fantasy VII',
-    'Star Fox',
-    'Tetris',
-    'Donkey Kong III',
-    'GoldenEye 007',
-    'Doom',
-    'Fallout',
-    'GTA',
-    'Halo'
-  ];
 
   public contactName = '';
   public contactTel = '' ;
+  public isEdit = false;
 
   public PATH = 'contacts/';
   contactList: Observable<any[]>
@@ -67,6 +48,11 @@ export class ListaPage {
   updateContact(item: any){
     this.db.list(this.PATH)
       .update(item.key, { name: this.contactName, tel: this.contactTel })
+    this.handleEdit()
+  }
+
+  handleEdit() {
+    this.isEdit = !this.isEdit
   }
 
   itemSelected(item: string) {
